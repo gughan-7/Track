@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block title %}Add Tracker{% endblock %} 
+{% block content %}
+<form method="POST">
+    <div class="form-group">
+        <label for="trackername">Tracker Name</label>
+        <input type="text" class="form-control" id="name" name="name">
+    </div><br>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" name="description"rows="3"></textarea>
+    </div><br>
+    <div class="form-group">
+        <label for="trackerlogtype">Tracker Log Type</label>
+        <select class="form-control" id="type" name="type">
+            <option>Numerical</option>
+            <option>Multiple Choice</option>
+            <option>Time Duration</option>
+            <option>Boolean</option>
+        </select>
+    </div><br>
+    <div class="form-group">
+        <label for="settings">Tracker Settings (Comma Separated Values)</label>
+        <textarea class="form-control" id="setting" name="settings"rows="3"></textarea>
+    </div><br>
+    <button type="submit" class="btn btn-primary" style="background-color: #0d85ca;">Create Tracker</button>
+</form>
+{% endblock %}

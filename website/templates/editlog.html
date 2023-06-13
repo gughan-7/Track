@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% block title %}Edit Log{% endblock %} {% block content %}
+<h1>Edit Log</h1>
+<br>
+<form method="POST">
+    <div class="form-group">
+        <label for="timestamp">Date-Time of new log</label>
+        <input type=""datetime-local" class="form-control" id="timestamp" name="timestamp" required value="{{log.timestamp}}">
+    </div>
+    {% if tracker.tracker_type == "Numerical" %}
+        <div class="form-group">
+            <label for="value">Value</label>
+            <input type="number" class="form-control" id="value" name="value" required placeholder="Enter numerical value" value="{{log.value}}">
+        </div>
+    {% elif tracker.tracker_type == "Boolean" %}
+        <div class="form-group">
+            <label for="value">Value</label>
+            <select class="form-control" id="value" name="value" value="{{log.value}}" required>
+                <option>True</option>
+                <option>False</option>
+            </select>
+        </div>
+    {% elif tracker.tracker_type == "Time Duration" %}
+        <div class="form-group">
+            <label for="value">Value</label>
+            <input type="time" id="value" name="value" value="{{log.value}}" required>
+        </div>
+    {% elif tracker.tracker_type == "Multiple Choice" %}
+        <div class="form-group">
+            <label for="trackerlogtype">Tracker Log Type</label>
+            <select class="form-control" id="value" name="value">
+                {% for setting in settings %}
+                    <option>{{ setting }}</option>
+                {% endfor %} 
+            </select>
+        </div>
+    {% endif %}
+    <div class="form-group">
+        <label for="note">Note</label>
+        <input type="text" class="form-control" id="note" name="note"rows="3" value="{{log.notes}}"></input>
+    </div>
+    <button type="submit" class="btn btn-primary" style="background-color: #0d85ca;">Update Log</button>
+</form>
+{% endblock %}

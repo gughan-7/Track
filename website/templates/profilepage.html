@@ -1,0 +1,29 @@
+{% extends 'base.html' %}{% block title %}Profile{% endblock %}{% block content %}
+<section class="vh-100">
+    <div class="container py-5 h-50">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-12 col-xl-4">
+          <div class="card" style="border-radius: 15px; background-color:rgb(236, 227, 227)">
+            <div class="card-body text-center">
+              <h4 class="mb-2">{{name1}} {{last1}}</h4>
+              <p class="text-muted mb-4">{{emai}}</p>
+              <div class="d-flex justify-content-between text-center mt-5 mb-2">
+                <div>
+                  <p class="mb-2 h5">{{ct}}</p>
+                  <p class="text-muted mb-0">Trackers Created</p>
+                </div>
+                <div class="px-3">
+                  <p class="mb-2 h5">{{cl}}</p>
+                  <p class="text-muted mb-0">Logs Loggeds</p>
+                </div>
+              </div>
+              <br>
+              <a href="/editprofile"  class="btn btn-outline-dark btn-rounded btn-lg">Edit</a>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

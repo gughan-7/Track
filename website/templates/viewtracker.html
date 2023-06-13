@@ -1,0 +1,56 @@
+{% extends "base.html" %} {% block title %}View Tracker{% endblock %} {% block content %}
+<style>
+    .my-custom-scrollbar {
+        position: relative; height: 300px; width: 100; overflow: auto;
+    }
+    .table-wrapper-scroll-y {
+        display: block;
+    }
+</style>
+<h1>{{tracker.name}}</h1>
+<h4>{{tracker.description}}</h4>
+<h6>Last Updated: {{hour}} hours, {{minute}} minutes, {{second}} seconds ago</h6>
+<div class="container">
+    <div class="row justify-content-center px-3 py-3">
+      <div class="col-12">
+        <img src="data:image/png;base64, {{ img }}" alt="Image description" class="img-fluid mx-auto d-block">
+      </div>
+    </div>
+</div>
+<div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <div class="row justify-content-center px-3 py-3">
+        <table class="table table-striped">
+            <tbody>
+                        <tr>
+                            <th scope="col">Logged</th>
+                            {% for logg in log %} {% if logg.user_id==user.id and logg.tracker_id==tracker.id %} {% set logid = logg.id %}
+                            <td>{{logg.timestamp}}</td>
+                            {% endif %} {% endfor %}
+                        </tr>
+                        <tr>
+                            <th scope="col">Value</th>
+                            {% for logg in log %} {% if logg.user_id==user.id and logg.tracker_id==tracker.id %} {% set logid = logg.id %}
+                            <td>{{logg.value}}</td>
+                            {% endif %} {% endfor %}
+                        <tr>
+                            <th scope="col">Note</th>
+                            {% for logg in log %} {% if logg.user_id==user.id and logg.tracker_id==tracker.id %} {% set logid = logg.id %}
+                            <td>{{logg.notes}}</td>
+                            {% endif %} {% endfor %}
+                        </tr>
+                        <tr>
+                            <th scope="col"></th>
+                            {% for logg in log %} {% if logg.user_id==user.id and logg.tracker_id==tracker.id %} {% set logid = logg.id %}
+                            <td><a href="/editlog/{{logg.id}}" class="btn btn-light">Edit Log</a>
+                                <a href="/deletelog/{{logg.id}}" class="btn btn-light">Delete Log</a>
+                            </td>
+                            {% endif %} {% endfor %}
+                        </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row justify-content-center px-3 py-3">
+    <a type="button" href="/addlog/{{tracker.id}}" class="btn btn-outline-primary" style="background-color: #0d85ca;">Add Log</a>
+</div>
+{% endblock %}
